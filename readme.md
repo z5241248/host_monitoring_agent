@@ -23,7 +23,7 @@ Windows、Linux
 ### 使用说明
 推荐使用python3.6（为了方便使用PyInstaller打包成单独可运行文件）；
 
-如果只是运行源码，那么python版本没有硬性要求，直接运行```python main.py``。
+如果只是运行源码，那么python版本没有硬性要求，直接运行```python main.py```。
 
 ### 二次开发
 对于二次开发，你可以修改agent_utils下的core.py，将数据发送到你的存储地址。

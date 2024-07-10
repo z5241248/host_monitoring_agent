@@ -1,0 +1,7 @@
+tasks:
+  -
+    id: 1
+    ttype: finger_collection
+  -
+    id: 2
+    ttype: monitor_collection

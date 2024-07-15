@@ -39,9 +39,9 @@ def get_real_time_io_info():
 
 # 性能监控
 def get_system_state(system):
-    # CPU空闲率
+    # CPU使用率
     global single
-    cpu_percent = 100 - psutil.cpu_percent(interval=1)
+    cpu_percent = psutil.cpu_percent(interval=1)
     # 获取内存信息（MB）
     memory_info = psutil.virtual_memory()
     total_memory = round(memory_info.total / (1024 ** 2), 2)

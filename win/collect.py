@@ -1,9 +1,9 @@
-import os
+import tempfile
 import winreg
+
 from agent_utils.os_utils import *
 
-from pathlib import Path
-BASE_DIR = Path(__file__).resolve().parent.parent
+TEMP_DIR = tempfile.gettempdir()
 
 
 def collect_rules(conf):
@@ -30,9 +30,9 @@ def collect(coll_rules):
     for rule in coll_rules:
         _type, f = rule.split(':')  # "type:file
         if _type == 'registry':
-            _r = read_registry(f)   # 注册表
+            _r = read_registry(f)  # 注册表
         elif _type == 'secedit':
-            _r = read_secedit()     # 组策略
+            _r = read_secedit()  # 组策略
         else:
             print(_type)
             _r = None
@@ -59,7 +59,7 @@ def read_registry(reg_path):
 
 
 def read_secedit():
-    out_f = os.path.join(BASE_DIR, 'gp.inf')
+    out_f = os.path.join(TEMP_DIR, 'gp.inf')
     print(out_f)
     a = os.popen(f"secedit /export /cfg {out_f}")
     a.close()

@@ -103,16 +103,19 @@ def get_ports():
     ports = []
     for conn in connections:
         net_id = type_map.get(conn.type, 'UNKNOWN')
-        process = psutil.Process(conn.pid)
-        if process is not None:
-            process_str = "Pid: " + str(process.pid) + " Name: " + process.name() + " Status: " + process.status()
-        port = {
-            'Netid': net_id,
-            'State': conn.status,
-            'Local': f'{conn.laddr[0]}:{conn.laddr[1]}',
-            'Process': process_str,
-        }
-        ports.append(port)
+        try:
+            process = psutil.Process(conn.pid)
+            if process is not None:
+                process_str = "Pid: " + str(process.pid) + " Name: " + process.name() + " Status: " + process.status()
+            port = {
+                'Netid': net_id,
+                'State': conn.status,
+                'Local': f'{conn.laddr[0]}:{conn.laddr[1]}',
+                'Process': process_str,
+            }
+            ports.append(port)
+        except:
+            continue
     return ports
 
 

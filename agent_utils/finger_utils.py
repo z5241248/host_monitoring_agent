@@ -168,9 +168,12 @@ def get_info():
     space_free = 0
     partitions = psutil.disk_partitions()
     for par in partitions:
-        device = psutil.disk_usage(par.device)
-        space_total += device.total
-        space_free += device.free
+        try:
+            device = psutil.disk_usage(par.device)
+            space_total += device.total
+            space_free += device.free
+        except:
+            continue
     return {
         'Hostname': hostname,
         'System': platform.system() + " " + platform.release(),
